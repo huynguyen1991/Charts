@@ -21,6 +21,10 @@ open class BarChartView: BarLineChartViewBase, BarChartDataProvider
     /// if set to true, a grey area is drawn behind each bar that indicates the maximum value
     private var _drawBarShadowEnabled = false
     
+    /// if set to true, a rounded rectangle with the corners is drawn on each bar
+    private var _drawRoundedBarEnabled = false
+
+    
     internal override func initialize()
     {
         super.initialize()
@@ -163,6 +167,17 @@ open class BarChartView: BarLineChartViewBase, BarChartDataProvider
         }
     }
     
+    /// if set to true, a rounded rectangle with the corners is drawn on each bar
+    open var drawRoundedBarEnabled: Bool
+        {
+        get { return _drawRoundedBarEnabled }
+        set
+        {
+            _drawRoundedBarEnabled = newValue
+            setNeedsDisplay()
+        }
+    }
+    
     /// Adds half of the bar width to each side of the x-axis range in order to allow the bars of the barchart to be fully displayed.
     /// **default**: false
     @objc open var fitBars = false
@@ -183,4 +198,7 @@ open class BarChartView: BarLineChartViewBase, BarChartDataProvider
     
     /// `true` if drawing shadows (maxvalue) for each bar is enabled, `false` ifnot
     open var isDrawBarShadowEnabled: Bool { return drawBarShadowEnabled }
+    
+    /// - returns: `true` if drawing rounded bars is enabled, `false` ifnot
+    open var isDrawRoundedBarEnabled: Bool { return drawRoundedBarEnabled }
 }
